@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #111;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            max-width: 300px;
+        }
+        input {
+            width: 91%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            background-color: #5a0fc8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4b0da8;
+        }
+        #message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter The Password</h2>
+        <input type="password" id="password" placeholder="you got this">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        const wrongMessages = [
+        "WRONG! Try again.",
+        "Nope, that's not it!",
+        "Incorrect, try harder!",
+        "You sure that's right, bud?",
+        "Access denied. Try again.",
+        "HHAHAHAHA! Not even close.",
+        "Keep guessing, you'll get there."
+    ];
+        function checkPassword() {
+            var password = document.getElementById("password").value;
+            var correctPassword = "cupcake"; // Change this to your secret password
+            var redirectURL = "https://docs.google.com/document/d/1mBEY074ceJXgMhLCU9Y-hczmBbaon7dmWP-SLpcqUeo/edit?tab=t.0"; // Change to your document link
+
+            if (password === correctPassword) {
+        window.location.href = redirectURL;
+            } else {
+                // Pick a random wrong message
+                const randomMessage = wrongMessages[Math.floor(Math.random() * wrongMessages.length)];
+                document.getElementById("message").textContent = randomMessage;
+            }
+        }
+    </script>
+</body>
+</html>
